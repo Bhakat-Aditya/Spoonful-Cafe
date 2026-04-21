@@ -2,6 +2,11 @@ import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+// Import your other home page sections here
+import SensoryExperience from "../components/SensoryExperience";
+import Atmosphere from "../components/Atmosphere";
+import MenuCard from "../components/MenuCard";
+
 gsap.registerPlugin(ScrollTrigger);
 
 const Home = () => {
@@ -44,30 +49,38 @@ const Home = () => {
   }, []);
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative h-screen w-full overflow-hidden flex items-center justify-center"
-    >
-      <div className="absolute inset-0 z-0 overflow-hidden">
-        <img
-          ref={imgRef}
-          src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2070"
-          className="w-full h-full object-cover scale-110 opacity-60"
-          alt="Cafe Interior"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cafe-dark/20 to-cafe-dark"></div>
-      </div>
+    <>
+      {/* Hero Section */}
+      <section
+        ref={sectionRef}
+        className="relative h-screen w-full overflow-hidden flex items-center justify-center"
+      >
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <img
+            ref={imgRef}
+            src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2070"
+            className="w-full h-full object-cover scale-110 opacity-60"
+            alt="Cafe Interior"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cafe-dark/20 to-cafe-dark"></div>
+        </div>
 
-      <div className="relative z-10 text-center px-4">
-        <h1 className="hero-title text-8xl md:text-[12rem] font-serif font-bold text-cafe-gold leading-none overflow-hidden">
-          <span className="block">Spoonful</span>
-          <span className="block text-white italic">Cafe</span>
-        </h1>
-        <p className="hero-sub text-cafe-cream text-lg md:text-2xl tracking-[0.5em] uppercase mt-8 font-light opacity-70">
-          A Himalayan Sanctuary in Kolkata
-        </p>
-      </div>
-    </section>
+        <div className="relative z-10 text-center px-4">
+          <h1 className="hero-title text-8xl md:text-[12rem] font-serif font-bold text-cafe-gold leading-none overflow-hidden">
+            <span className="block">Spoonful</span>
+            <span className="block text-white italic">Cafe</span>
+          </h1>
+          <p className="hero-sub text-cafe-cream text-lg md:text-2xl tracking-[0.5em] uppercase mt-8 font-light opacity-70">
+            A Himalayan Sanctuary in Kolkata
+          </p>
+        </div>
+      </section>
+
+      {/* Render the rest of the Home page sections below the Hero */}
+      <SensoryExperience />
+      <Atmosphere />
+      <MenuCard />
+    </>
   );
 };
 

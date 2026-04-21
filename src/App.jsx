@@ -13,6 +13,8 @@ import Atmosphere from "./components/Atmosphere";
 import Gallery from "./pages/Gallery";
 import Menu from "./pages/Menu";
 import Home from "./pages/Home";
+import About from "./pages/About";
+import Location from "./pages/Location";
 
 function App() {
   useEffect(() => {
@@ -32,25 +34,12 @@ function App() {
         <Navbar />
 
         <main>
-          {/* You can either stack everything on one page like you had it:
-            <Hero />
-            <SensoryExperience />
-            <Atmosphere />
-            <Gallery />
-            <Menu />
-            
-            OR, you can use the Routes to separate your pages. 
-            Here is how you separate them using the pages you created:
-          */}
           <Routes>
-            {/* Renders your dedicated Home.jsx page */}
             <Route path="/" element={<Home />} />
-
-            {/* Renders your dedicated Menu.jsx page */}
             <Route path="/menu" element={<Menu />} />
-
-            {/* Renders your dedicated Gallery.jsx page */}
             <Route path="/gallery" element={<Gallery />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/location" element={<Location />} />
           </Routes>
         </main>
 

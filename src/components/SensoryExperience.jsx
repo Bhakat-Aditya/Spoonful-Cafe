@@ -32,17 +32,17 @@ const SensoryExperience = () => {
     {
       title: "The Aroma",
       desc: "The scent of steaming Thukpa and fresh Himalayan herbs filling the air.",
-      img: "https://images.unsplash.com/photo-1563245339-67652967912c?q=80&w=2070",
+      img: "https://images.unsplash.com/photo-1669123284662-f440b1ff943f?q=80&w=1677&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
     {
       title: "The Taste",
       desc: "Juicy, handmade momos that melt in your mouth, paired with our secret spicy chutney.",
-      img: "https://images.unsplash.com/photo-1625220197328-67666e437855?q=80&w=2070",
+      img: "https://plus.unsplash.com/premium_photo-1753982324805-648c071c2f6d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cmV0cm8lMjBpbmRhaW4lMjBjYWZlJTIwZm9vZHxlbnwwfHwwfHx8MA%3D%3D",
     },
     {
       title: "The Soul",
       desc: "A cozy, open-kitchen atmosphere where you watch the craft of Himalayan cooking.",
-      img: "https://images.unsplash.com/photo-1554118811-1e0d58224f27?q=80&w=2047",
+      img: "https://plus.unsplash.com/premium_photo-1723823036427-b19e6d270bb6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGluZGFpbiUyMGNhZmUlMjBraXRjaGVufGVufDB8fDB8fHww",
     },
   ];
 

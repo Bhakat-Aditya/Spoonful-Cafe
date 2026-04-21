@@ -5,12 +5,18 @@
   --color-cafe-gold: #c5a059;
   --color-cafe-cream: #f5f5dc;
   --color-cafe-accent: #1a1a1a;
-  
+
+  --color-cafe-gold: #D4AF37;
+  --color-cafe-dark: #0F0F0F;
+  --color-cafe-accent: #1A1A1A;
+  --color-cafe-cream: #F5F5DC;
+
   --font-serif: "Playfair Display", serif;
   --font-sans: "Inter", sans-serif;
 }
 
 body {
   background-color: var(--color-cafe-dark);
-  cursor: none; /* Hide default cursor for our custom one */
+  cursor: none;
+  /* Hide default cursor for our custom one */
 }

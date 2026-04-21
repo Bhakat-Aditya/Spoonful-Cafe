@@ -5,21 +5,6 @@ const Footer = () => {
   return (
     <footer className="bg-cafe-dark pt-32 pb-12 px-6 border-t border-cafe-gold/10">
       <div className="max-w-7xl mx-auto">
-        {/* Big Footer Title */}
-        <div className="text-center mb-24">
-          <h2 className="text-6xl md:text-[10rem] font-serif font-bold text-cafe-gold leading-none mb-8 opacity-20">
-            Spoonful
-          </h2>
-          <p className="text-xl md:text-2xl text-cafe-cream font-light tracking-widest uppercase">
-            Ready for a Taste of the Himalayas?
-          </p>
-          <div className="mt-10">
-            <button className="px-12 py-5 bg-white text-cafe-dark font-bold uppercase tracking-tighter rounded-full hover:bg-cafe-gold transition-colors duration-500">
-              Book a Table Now
-            </button>
-          </div>
-        </div>
-
         {/* Footer Links & Info */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-16 text-cafe-cream/60 mb-24">
           <div className="space-y-6">
