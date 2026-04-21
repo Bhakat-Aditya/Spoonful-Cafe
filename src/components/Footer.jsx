@@ -1,5 +1,5 @@
+import { Mail, Phone } from "lucide-react";
 import React from "react";
-import { Instagram, Facebook, Twitter, Mail, Phone } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -33,11 +33,6 @@ const Footer = () => {
               <br />
               Kolkata, West Bengal 700029
             </p>
-            <div className="flex gap-4 pt-4">
-              <Instagram className="hover:text-cafe-gold cursor-pointer transition-colors" />
-              <Facebook className="hover:text-cafe-gold cursor-pointer transition-colors" />
-              <Twitter className="hover:text-cafe-gold cursor-pointer transition-colors" />
-            </div>
           </div>
 
           <div className="space-y-6">
