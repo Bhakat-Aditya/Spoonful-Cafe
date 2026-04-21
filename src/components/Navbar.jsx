@@ -1,10 +1,13 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { Link } from "react-router-dom";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Navbar = () => {
   const navRef = useRef(null);
-  const magBtnRef = useRef(null);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     // Navbar scroll effect: fade out and slide up on scroll
@@ -18,75 +21,95 @@ const Navbar = () => {
       y: -100,
       opacity: 0,
     });
-
-    // Magnetic Button Logic
-    const handleMouseMove = (e) => {
-      const { clientX, clientY } = e;
-      const { left, top, width, height } =
-        magBtnRef.current.getBoundingClientRect();
-      const centerX = left + width / 2;
-      const centerY = top + height / 2;
-
-      const distanceX = clientX - centerX;
-      const distanceY = clientY - centerY;
-
-      // If cursor is within 100px, pull the button
-      if (Math.abs(distanceX) < 100 && Math.abs(distanceY) < 100) {
-        gsap.to(magBtnRef.current, {
-          x: distanceX * 0.3,
-          y: distanceY * 0.3,
-          duration: 0.3,
-          ease: "power2.out",
-        });
-      } else {
-        gsap.to(magBtnRef.current, {
-          x: 0,
-          y: 0,
-          duration: 0.5,
-          ease: "elastic.out(1, 0.3)",
-        });
-      }
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
+  // Prevent background scrolling when mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isOpen]);
+
+  const navItems = ["Menu", "Gallery", "About", "Location"];
+
   return (
-    <nav
-      ref={navRef}
-      className="fixed top-0 left-0 w-full z-[100] flex justify-between items-center px-6 py-8 md:px-16"
-    >
-      {/* Logo */}
-      <Link
-        to="/"
-        className="text-2xl font-serif font-bold text-cafe-gold tracking-tighter"
+    <>
+      {/* 1. TOP NAVBAR (Affected by GSAP scroll) */}
+      <nav
+        ref={navRef}
+        className="fixed top-0 left-0 w-full z-[100] flex justify-between items-center px-6 py-8 md:px-16"
       >
-        S. <span className="text-white italic">Cafe</span>
-      </Link>
+        {/* Logo */}
+        <Link
+          to="/"
+          onClick={() => setIsOpen(false)}
+          className="text-2xl font-serif font-bold text-cafe-gold tracking-tighter z-[110] relative"
+        >
+          S. <span className="text-white italic">Cafe</span>
+        </Link>
 
-      {/* Links */}
-      <div className="hidden md:flex gap-12 text-sm uppercase tracking-widest text-cafe-cream/70 font-light">
-        {["Menu", "Gallery", "About", "Location"].map((item) => (
-          <Link
-            key={item}
-            to={`/${item.toLowerCase()}`}
-            className="hover:text-cafe-gold transition-colors duration-300 relative group"
-          >
-            {item}
-            <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-cafe-gold transition-all duration-300 group-hover:w-full"></span>
-          </Link>
-        ))}
-      </div>
+        {/* Desktop Links */}
+        <div className="hidden md:flex gap-12 text-sm uppercase tracking-widest text-cafe-cream/70 font-light">
+          {navItems.map((item) => (
+            <Link
+              key={item}
+              to={`/${item.toLowerCase()}`}
+              className="hover:text-cafe-gold text-lg transition-colors duration-300 relative group"
+            >
+              {item}
+              <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-cafe-gold transition-all duration-300 group-hover:w-full"></span>
+            </Link>
+          ))}
+        </div>
 
-      {/* Magnetic CTA */}
+        {/* Hamburger Toggle Button (Mobile Only) */}
+        <button
+          className="md:hidden z-[110] relative flex flex-col justify-center items-center gap-1.5 w-8 h-8 focus:outline-none"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          <span
+            className={`block w-6 h-[2px] bg-cafe-gold transition-transform duration-300 ease-in-out ${
+              isOpen ? "rotate-45 translate-y-[8px]" : ""
+            }`}
+          ></span>
+          <span
+            className={`block w-6 h-[2px] bg-cafe-gold transition-opacity duration-300 ease-in-out ${
+              isOpen ? "opacity-0" : "opacity-100"
+            }`}
+          ></span>
+          <span
+            className={`block w-6 h-[2px] bg-cafe-gold transition-transform duration-300 ease-in-out ${
+              isOpen ? "-rotate-45 -translate-y-[8px]" : ""
+            }`}
+          ></span>
+        </button>
+      </nav>
+
+      {/* 2. FULL-SCREEN MOBILE OVERLAY (Outside of navRef, NOT affected by GSAP scroll) */}
       <div
-        ref={magBtnRef}
-        className="px-6 py-2 bg-cafe-gold text-cafe-dark rounded-full text-xs font-bold uppercase tracking-tighter cursor-pointer hover:scale-105 transition-transform"
+        className={`fixed inset-0 bg-cafe-dark flex flex-col items-center justify-center transition-transform duration-500 ease-in-out z-[90] md:hidden ${
+          isOpen ? "translate-x-0" : "translate-x-full"
+        }`}
       >
-        Reserve Table
+        <div className="flex flex-col gap-8 text-center text-2xl uppercase tracking-widest text-cafe-cream font-light">
+          {navItems.map((item) => (
+            <Link
+              key={item}
+              to={`/${item.toLowerCase()}`}
+              onClick={() => setIsOpen(false)} // Close menu when a link is clicked
+              className="hover:text-cafe-gold transition-colors duration-300"
+            >
+              {item}
+            </Link>
+          ))}
+        </div>
       </div>
-    </nav>
+    </>
   );
 };
 

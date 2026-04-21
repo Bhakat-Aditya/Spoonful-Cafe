@@ -6,8 +6,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import CustomCursor from "./components/CustomCursor";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import SensoryExperience from "./components/SensoryExperience";
-import Atmosphere from "./components/Atmosphere";
 
 // Pages (These imports were missing!)
 import Gallery from "./pages/Gallery";
@@ -27,7 +25,6 @@ function App() {
   }, []);
 
   return (
-    // Wrapping the app in <Router> fixes the crash caused by <Link> in the Navbar
     <Router>
       <div className="bg-cafe-dark selection:bg-cafe-gold selection:text-cafe-dark overflow-x-hidden">
         <CustomCursor />
