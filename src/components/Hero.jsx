@@ -1,6 +1,6 @@
-import React, { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import React, { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -12,18 +12,21 @@ const Hero = () => {
     const ctx = gsap.context(() => {
       // Entrance Timeline
       const tl = gsap.timeline();
-      tl.from(".hero-title span", { 
-        y: 200, 
-        opacity: 0, 
-        duration: 1, 
-        stagger: 0.1, 
-        ease: "power4.out" 
-      })
-      .from(".hero-sub", { 
-        opacity: 0, 
-        duration: 1, 
-        y: 20 
-      }, "-=0.5");
+      tl.from(".hero-title span", {
+        y: 200,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.1,
+        ease: "power4.out",
+      }).from(
+        ".hero-sub",
+        {
+          opacity: 0,
+          duration: 1,
+          y: 20,
+        },
+        "-=0.5",
+      );
 
       // Scroll Parallax for Image
       gsap.to(imgRef.current, {
@@ -41,13 +44,16 @@ const Hero = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative h-screen w-full overflow-hidden flex items-center justify-center">
+    <section
+      ref={sectionRef}
+      className="relative h-screen w-full overflow-hidden flex items-center justify-center"
+    >
       <div className="absolute inset-0 z-0 overflow-hidden">
-        <img 
+        <img
           ref={imgRef}
-          src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2070" 
-          className="w-full h-full object-cover scale-110 opacity-60" 
-          alt="Cafe Interior" 
+          src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2070"
+          className="w-full h-full object-cover scale-110 opacity-60"
+          alt="Cafe Interior"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cafe-dark/20 to-cafe-dark"></div>
       </div>

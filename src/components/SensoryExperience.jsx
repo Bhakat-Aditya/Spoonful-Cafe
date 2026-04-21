@@ -1,4 +1,8 @@
 import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const SensoryExperience = () => {
   const containerRef = useRef(null);
@@ -19,7 +23,7 @@ const SensoryExperience = () => {
           pin: true,
           anticipatePin: 1,
         },
-      }
+      },
     );
     return () => pin.kill();
   }, []);
@@ -47,16 +51,27 @@ const SensoryExperience = () => {
       <div ref={triggerRef} className="h-screen flex items-center">
         <div ref={containerRef} className="flex w-[300vw] h-screen">
           {data.map((item, i) => (
-            <div key={i} className="panel w-screen h-screen flex items-center justify-center px-10 md:px-20 gap-10">
+            <div
+              key={i}
+              className="panel w-screen h-screen flex items-center justify-center px-10 md:px-20 gap-10"
+            >
               <div className="w-1/2 h-[70vh] overflow-hidden rounded-2xl">
-                <img src={item.img} className="w-full h-full object-cover hover:scale-110 transition-transform duration-700" alt={item.title} />
+                <img
+                  src={item.img}
+                  className="w-full h-full object-cover hover:scale-110 transition-transform duration-700"
+                  alt={item.title}
+                />
               </div>
               <div className="w-1/2 space-y-6">
-                <h2 className="text-6xl md:text-8xl font-serif text-cafe-gold">{item.title}</h2>
+                <h2 className="text-6xl md:text-8xl font-serif text-cafe-gold">
+                  {item.title}
+                </h2>
                 <p className="text-2xl text-cafe-cream opacity-70 leading-relaxed max-w-lg">
                   {item.desc}
                 </p>
-                <div className="text-cafe-gold text-4xl font-serif italic">0{i + 1}</div>
+                <div className="text-cafe-gold text-4xl font-serif italic">
+                  0{i + 1}
+                </div>
               </div>
             </div>
           ))}

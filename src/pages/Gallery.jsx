@@ -1,31 +1,73 @@
+import React, { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
 const Gallery = () => {
-  const images = [
-    "https://images.unsplash.com/photo-1563245339-67652967912c?q=80&w=1974",
-    "https://images.unsplash.com/photo-1625220197328-67666e437855?q=80&w=2070",
-    "https://images.unsplash.com/photo-1552566626-5567aa553fbe?q=80&w=2070",
-    "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=2070",
-    "https://images.unsplash.com/photo-1544148103-0773bf10d330?q=80&w=2070",
-    "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2070",
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const images = gsap.utils.toArray(".parallax-img");
+    images.forEach((img, i) => {
+      gsap.fromTo(
+        img,
+        { y: i % 2 === 0 ? -50 : 50 },
+        {
+          y: i % 2 === 0 ? 50 : -50,
+          scrollTrigger: {
+            trigger: img,
+            scrub: true,
+          },
+        },
+      );
+    });
+  }, []);
+
+  const galleryItems = [
+    {
+      src: "https://images.unsplash.com/photo-1563245339-67652967912c?q=80&w=1974",
+      size: "md",
+    },
+    {
+      src: "https://images.unsplash.com/photo-1625220197328-67666e437855?q=80&w=2070",
+      size: "lg",
+    },
+    {
+      src: "https://images.unsplash.com/photo-1552566626-5567aa553fbe?q=80&w=2070",
+      size: "sm",
+    },
+    {
+      src: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=2070",
+      size: "md",
+    },
+    {
+      src: "https://images.unsplash.com/photo-1544148103-0773bf10d330?q=80&w=2070",
+      size: "lg",
+    },
   ];
 
   return (
-    <div className="bg-cafe-dark min-h-screen py-32 px-6">
-      <h1 className="text-center text-7xl font-serif font-bold text-cafe-gold mb-20">Atmosphere</h1>
-      <div className="columns-1 md:columns-3 gap-6 max-w-7xl mx-auto space-y-6">
-        {images.map((src, i) => (
-          <div key={i} className="relative group overflow-hidden rounded-lg">
-            <img 
-              src={src} 
-              className="w-full grayscale hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-110" 
-              alt="Cafe" 
+    <section
+      ref={sectionRef}
+      className="py-32 bg-cafe-dark px-6 overflow-hidden"
+    >
+      <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-3 gap-12 items-center">
+        {galleryItems.map((item, i) => (
+          <div
+            key={i}
+            className={`parallax-img relative overflow-hidden rounded-2xl ${
+              item.size === "lg" ? "col-span-2 row-span-2" : "col-span-1"
+            }`}
+          >
+            <img
+              src={item.src}
+              className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 scale-110"
+              alt="Cafe Visual"
             />
-            <div className="absolute inset-0 bg-cafe-dark/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-              <span className="text-cafe-gold font-serif italic text-xl">Capture the Moment</span>
-            </div>
+            <div className="absolute inset-0 bg-gradient-to-t from-cafe-dark/60 to-transparent"></div>
           </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import Lenis from "@studio-freight/lenis";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import CustomCursor from "./components/CustomCursor";
 import Hero from "./components/Hero";
@@ -17,15 +18,18 @@ function App() {
     requestAnimationFrame(raf);
   }, []);
   return (
-    <div className="bg-cafe-dark text-cafe-cream selection:bg-cafe-gold selection:text-cafe-dark">
+    <div className="bg-cafe-dark selection:bg-cafe-gold selection:text-cafe-dark overflow-x-hidden">
       <CustomCursor />
       <Navbar />
+
       <main>
         <Hero />
         <SensoryExperience />
         <Atmosphere />
-
+        <Gallery />
+        <Menu />
       </main>
+
       <Footer />
     </div>
   );
